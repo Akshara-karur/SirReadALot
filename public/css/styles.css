@@ -1,0 +1,24 @@
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+
+}
+
+.card1 {
+     background:
+    url('../images/story.jpg') center 100% no-repeat #46B6AC;
+}
+
+.card2{
+     background:
+    url('../images/wait.jpg') center 100% no-repeat #46B6AC;
+}
+
+.card3{
+    background:
+    url('../images/network.jpg') center 30% no-repeat #46B6AC;
+}
+
