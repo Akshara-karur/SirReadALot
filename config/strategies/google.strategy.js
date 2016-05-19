@@ -2,6 +2,7 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../../models/userModel');
 
+
 module.exports = function () {
     passport.use(new GoogleStrategy({
             clientID: '51525206209-i30l3ghgfuda32kcqqaebnh2jc5f5nos.apps.googleusercontent.com',
@@ -18,7 +19,7 @@ module.exports = function () {
            User.findOne(query, function(error, user){
                
                if(user)
-                   {
+                   { 
                        console.log('found');
                        done(null, user);
                    }
