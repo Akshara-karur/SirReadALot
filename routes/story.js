@@ -1,40 +1,56 @@
 var express = require('express');
 var passport = require('passport');
+var mongoose = require('mongoose');
+//var readTime = require('read-time');
 
-
-
-var storyRouter = function(db)    
-{
+var routes = function(db){
 
 var Story = require('../models/storyModel');
+
 var router = express.Router();
-router.post('/',function(req,res){
+    
+    
+    router.route('/')
+    .post(function(req,res){
     var story = new Story(req.body);
+    var content = req.body.content;    
+    console.log("story content is "+content); 
     story.save();
     res.send(story);
-});
-
-router.get('/',function(req,res){
     
-    var query = {}
+    })
+
+    .get(function(req,res){
+    
+    
     if(req.query.duration)
         {
-            var count = db.Story.count();
-            query.genre = req.query.duration;
-            Story.find(query,function(err, stories){
-             if(err){
-                 console.log(err);
-                 res.send(err);
-             }
-                else
-                    res.json(stories);
+            
+            var filter = {'duration':req.query.duration};
+            
+            Story.findOneRandom(filter, function(err, result){
+               
+                if(!err)
+                    {
+                        console.log(result);
+                        res.send(result);
+                    }
                 
-            }).limit(-1).skip(yourRandomNumber).next();
-        }
+            });
+         }
     else
         res.send("Can't leave duration empty!");
     
     
     });
+
+ return router;    
+    
 };
-module.exports = storyRouter;
+
+function timeCalculator(words)
+{
+    
+}
+
+module.exports = routes;
