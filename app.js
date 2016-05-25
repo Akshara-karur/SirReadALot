@@ -15,7 +15,7 @@ var port = 3000;
 var app = express();
 app.use(cors());
 
-var db = mongoose.connect('mongodb://localhost/storyShot');
+var db = mongoose.connect('mongodb://root:root@ds013911.mlab.com:13911/storyshot');
 
 
 app.use(logger('dev'));

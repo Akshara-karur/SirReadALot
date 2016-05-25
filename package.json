@@ -2,8 +2,13 @@
   "name": "sirreadalot",
   "version": "0.0.0",
   "private": true,
+  "author": "Mohit Verma",
+  "engines": {
+    "node": "~4.2"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js",
+    "deploy": "gcloud preview app deploy"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

@@ -1,7 +1,4 @@
 var express = require('express');
-var passport = require('passport');
-var mongoose = require('mongoose');
-//var readTime = require('read-time');
 
 var routes = function(db){
 
@@ -11,10 +8,13 @@ var router = express.Router();
     
     
     router.route('/')
-    .post(function(req,res){
+    .post(function(req,res)
+    {
     var story = new Story(req.body);
     var content = req.body.content;    
-    console.log("story content is "+content); 
+    var duration = timeCalculator(content.split('').length); //calculate the number of words in the story content, and call timeCalculator()
+    console.log("duration calculated is "+duration);
+    story.duration = duration;    
     story.save();
     res.send(story);
     
@@ -23,12 +23,12 @@ var router = express.Router();
     .get(function(req,res){
     
     
-    if(req.query.duration)
+    if(req.query.duration) //check if the duration field was left empty
         {
             
-            var filter = {'duration':req.query.duration};
+            var filter = {'duration':req.query.duration}; //using mongoose-simple-random plugin here, applying filters while fetching a random document
             
-            Story.findOneRandom(filter, function(err, result){
+            Story.findOneRandom(filter, function(err, result){ //findOneRandom() provided by the plugin
                
                 if(!err)
                     {
@@ -48,9 +48,18 @@ var router = express.Router();
     
 };
 
-function timeCalculator(words)
+function timeCalculator(words)  //Calculate the story reading time based on a simple logic
 {
-    
+    var readingTime = Math.ceil(words/180);
+    console.log("ceil duration is "+readingTime);
+    if(readingTime<=1)
+        return 1;
+    else if(readingTime<=3)
+        return 3;
+    else if(readingTime<=5)
+        return 5;
+    else
+        return 7;
 }
 
 module.exports = routes;
