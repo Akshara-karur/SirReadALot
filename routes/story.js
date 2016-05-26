@@ -12,8 +12,8 @@ var router = express.Router();
     {
     var story = new Story(req.body);
     var content = req.body.content;
-    console.log("words calculated- "+content.split('').length);
-    var duration = timeCalculator(content.split('').length); //calculate the number of words in the story content, and call timeCalculator()
+    console.log("words calculated- "+content.split(/\s+/).length);
+    var duration = timeCalculator(content.split(/\s+/).length); //calculate the number of words in the story content, and call timeCalculator()
     console.log("duration calculated is "+duration);
     story.duration = duration;    
     story.save();
