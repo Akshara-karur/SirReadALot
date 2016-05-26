@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
     sess = req.session;
     sess.user = req.user;
     console.log(req.user);
-    res.redirect('http://localhost/#/read');
+    res.redirect('http://storyshot.tk/#/read');
 });
 
 router.get('/logged',function(req,res){

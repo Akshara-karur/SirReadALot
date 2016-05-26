@@ -7,7 +7,7 @@ module.exports = function () {
     passport.use(new GoogleStrategy({
             clientID: '51525206209-i30l3ghgfuda32kcqqaebnh2jc5f5nos.apps.googleusercontent.com',
             clientSecret: 'ipx7UEuEDk22gYR7cd8fiGfv',
-            callbackURL: 'http://localhost:3000/auth/google/callback'
+            callbackURL: 'http://storyshot.eu-2.evennode.com/auth/google/callback'
         },
         function (req, accessToken, refreshToken, profile, done) {
             var user = {};
