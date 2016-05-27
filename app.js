@@ -22,18 +22,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-var story = require('./routes/story')(db);
-
-app.use(session({secret: 'anything'}));
-
+app.use(session({secret: 'anything', resave: true, saveUninitialized: true,  cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }}));
 require('./config/passport')(app);
 
   app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
-  });
-  
+  });   
+
+  var story = require('./routes/story')(db); 
   app.use('/story', story);
   app.use('/users', users);
   app.use('/auth', auth);
