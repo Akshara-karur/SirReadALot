@@ -2,15 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/', function(req, res, next) {
-     if(!req.user){
+router.get('/', function(req, res) {
+     
+    if(!req.user){
         res.redirect('http://storyshot.tk/');
     }
-    next();
-});
-
-router.get('/',function(req,res){
-    res.redirect('http://storyshot.tk/#/read');
+    else
+        res.redirect('http://storyshot.tk/#/read');
+    
 });
 
 router.get('/logged', function(req, res){
