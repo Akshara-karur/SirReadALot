@@ -13,10 +13,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/logged', function(req, res){
-   if(req.session.passport.user)
+
        res.send(req.session.passport.user);
-    else
-        res.send(null);
+    
 });
 
 module.exports = router;
